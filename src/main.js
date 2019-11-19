@@ -13,8 +13,9 @@ Vue.config.productionTip = false;
 const token = localStorage.getItem('token')
 if (token) {
     Vue.prototype.$http.defaults.headers.common['Authorization'] = token;
+} else {
+    Vue.prototype.$http.defaults.headers.common['Authorization'] = null;
 }
-
 
 new Vue({
     router,
