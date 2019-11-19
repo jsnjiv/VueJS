@@ -3,10 +3,8 @@
   <a class="navbar-brand mr-0 mr-md-2 logo" href="/" aria-label="Bootstrap">
   <img src="../assets/logo.png" alt="" width="40">
   </a>
-
   <div class="navbar-nav-scroll header-contrainer">
-    <ul class="navbar-nav bd-navbar-nav flex-row ">
-
+    <ul class="navbar-nav bd-navbar-nav flex-row">
       <li class="nav-item">
           <router-link to="/" class="nav-link" exact-active-class="active">Home</router-link>
       </li>

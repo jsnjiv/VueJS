@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
+import store from './store.js'
 import Home from './views/Home.vue'
 
 Vue.use(Router)
 
-export default new Router({
+let routers = new Router({
     routes: [{
             path: '/',
             name: 'home',
@@ -21,7 +21,10 @@ export default new Router({
             path: '/contact',
             name: 'contact',
             component: () =>
-                import ('./views/Contact.vue')
+                import ('./views/Contact.vue'),
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             path: '/login',
@@ -31,3 +34,17 @@ export default new Router({
         }
     ]
 })
+
+routers.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        if (store.getters.isLoggedIn) {
+            next()
+            return
+        }
+        next('/login')
+    } else {
+        next()
+    }
+})
+
+export default routers

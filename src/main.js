@@ -4,8 +4,17 @@ import App from './App.vue'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import router from './router'
+// import store from './store'
+import Axios from 'axios'
 
-Vue.config.productionTip = false
+Vue.prototype.$http = Axios;
+Vue.config.productionTip = false;
+
+const token = localStorage.getItem('token')
+if (token) {
+    Vue.prototype.$http.defaults.headers.common['Authorization'] = token;
+}
+
 
 new Vue({
     router,
